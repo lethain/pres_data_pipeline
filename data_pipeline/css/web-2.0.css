@@ -294,3 +294,13 @@
     -ms-box-pack: center;
     box-pack: center; 
 }
+
+
+.slide.largeimg .content p {
+    width: 100%;
+}
+
+.slide.largeimg .content img {
+    width: 100%;
+    height: auto;
+}

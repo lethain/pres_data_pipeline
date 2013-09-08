@@ -33,16 +33,31 @@
 
 <!-- Begin slides -->
 <section class="slide "><div class="content"><h1>Building Data Infrastructure</h1>
-<h2>Will Larson (@lethain)</h2></div></section>
-<section class="slide left"><div class="content"><h1>What is big data?</h1>
+<h2>Will Larson (<a href="https://twitter.com/Lethain">@lethain</a>)</h2>
+<h2>SocialCode (<a href="https://twitter.com/socialcodeinc">@socialcodeinc</a>)</h2></div></section>
+<section class="slide "><div class="content"><h2>What is big data?</h2>
 <blockquote>
 <blockquote>
-<p>When an increase of quantity or type of data changes causes your tools or approach to fail.</p>
+<p>When an increase, in quantity or kind, of data
+ccauses your tools or approach to fail.</p>
 </blockquote>
 </blockquote></div></section>
-<section class="slide left"><div class="content"><h1>Original Architecture</h1></div></section>
-<section class="slide "><div class="content"><h1>THen comes growth</h1></div></section>
-<section class="slide "><div class="content"><h1>Tools or process break</h1></div></section>
+<section class="slide "><div class="content"><h2>A map of what's to come</h2>
+<ol>
+<li>A monolithic Python application</li>
+<li>Many kinds of growth</li>
+<li>Data becomes the bottleneck</li>
+<li>Building a data pipeline</li>
+<li>Questions</li>
+</ol></div></section>
+<section class="slide largeimg"><div class="content"><h2>A familiar monolith</h2>
+<p><img alt="Architecture diagram of monolithic architecture composed of a load balancer, Gunicorn web servers, MySQL, Redis and celery workers." src="imgs/monolithic.png" /></p></div></section>
+<section class="slide largeimg"><div class="content"><h2>When an increase...</h2>
+<p><img alt="Showing teams, products and databases increasing over time." src="imgs/when_an_increase.png" /></p></div></section>
+<section class="slide "><div class="content"><h2>...causes your tools or approach to break.</h2>
+<h3>Complex deployments. → Continuous integration.</h3>
+<h3>Tight coupling. → Service oriented architecture.</h3>
+<h3>Data silos. → ???</h3></div></section>
 <section class="slide "><div class="content"><h1>Data scaling</h1></div></section>
 <section class="slide "><div class="content"><h1>Approaches</h1></div></section>
 <section class="slide "><div class="content"><h1>Approach</h1></div></section>
