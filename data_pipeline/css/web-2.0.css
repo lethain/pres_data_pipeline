@@ -304,3 +304,8 @@
     width: 100%;
     height: auto;
 }
+
+.slide.left .content ol, .slide.left .content ul {
+  font-size: 2em;
+}
+

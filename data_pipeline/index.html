@@ -32,17 +32,22 @@
 <body class="deck-container">
 
 <!-- Begin slides -->
+<section class="slide left"><div class="content"><h2>Issues to address</h2>
+<ol>
+<li>right now it's a bit incoherent, trying to tell two different stories and having trouble weaving them together</li>
+<li>should consider removing the non-data scaling storyline entirely, or radically simplifying it</li>
+<li>Maybe we should call it, from SoA Data Silos to a Unified Data Pipeline</li>
+</ol></div></section>
 <section class="slide "><div class="content"><h1>Building Data Infrastructure</h1>
 <h2>Will Larson (<a href="https://twitter.com/Lethain">@lethain</a>)</h2>
 <h2>SocialCode (<a href="https://twitter.com/socialcodeinc">@socialcodeinc</a>)</h2></div></section>
-<section class="slide "><div class="content"><h2>What is big data?</h2>
+<section class="slide "><div class="content"><blockquote>
 <blockquote>
-<blockquote>
-<p>When an increase, in quantity or kind, of data
-ccauses your tools or approach to fail.</p>
+<p>When an increase of data, in quantity or kind,
+causes your tools or approach to fail.</p>
 </blockquote>
 </blockquote></div></section>
-<section class="slide "><div class="content"><h2>A map of what's to come</h2>
+<section class="slide left"><div class="content"><h2>A map of what's to come</h2>
 <ol>
 <li>A monolithic Python application</li>
 <li>Many kinds of growth</li>
@@ -54,16 +59,71 @@ ccauses your tools or approach to fail.</p>
 <p><img alt="Architecture diagram of monolithic architecture composed of a load balancer, Gunicorn web servers, MySQL, Redis and celery workers." src="imgs/monolithic.png" /></p></div></section>
 <section class="slide largeimg"><div class="content"><h2>When an increase...</h2>
 <p><img alt="Showing teams, products and databases increasing over time." src="imgs/when_an_increase.png" /></p></div></section>
-<section class="slide "><div class="content"><h2>...causes your tools or approach to break.</h2>
-<h3>Complex deployments. → Continuous integration.</h3>
-<h3>Tight coupling. → Service oriented architecture.</h3>
-<h3>Data silos. → ???</h3></div></section>
-<section class="slide "><div class="content"><h1>Data scaling</h1></div></section>
-<section class="slide "><div class="content"><h1>Approaches</h1></div></section>
-<section class="slide "><div class="content"><h1>Approach</h1></div></section>
-<section class="slide "><div class="content"><h1>Arch diagram</h1></div></section>
-<section class="slide "><div class="content"><h1>Details</h1></div></section>
-<section class="slide "><div class="content"><h1>Switch to Java</h1></div></section>
+<section class="slide left"><div class="content"><h2>...causes your tools or approach to break.</h2>
+<ul>
+<li>Complex deployments.</li>
+<li>Tight coupling.</li>
+<li>Siloed Data.</li>
+</ul></div></section>
+<section class="slide left"><div class="content"><h2>Data will break you in various ways.</h2>
+<ul>
+<li>Schema changes.</li>
+<li>Silos.</li>
+<li>Incompatible requirements.</li>
+<li>Growth.</li>
+</ul></div></section>
+<section class="slide left"><div class="content"><h2>How to tame your data?</h2>
+<ol>
+<li>Embrace the silos?</li>
+<li>Unify collection and storage?</li>
+<li>Pipeline for sharing data?</li>
+</ol></div></section>
+<section class="slide left"><div class="content"><blockquote>
+<blockquote>
+<p>People use solutions which are easier, more powerful and require less upfront learning than doing it themselves.</p>
+</blockquote>
+</blockquote></div></section>
+<section class="slide left"><div class="content"><h2>One pipeline to facilitate them all.</h2>
+<ol>
+<li>Avoid datastore lockin.</li>
+<li>Decouple publishing and consumption.</li>
+<li>Support cheap data exploration.</li>
+<li>Fail rarely.</li>
+<li>Fail loudly.</li>
+<li>Facilitate schemas change.</li>
+</ol></div></section>
+<section class="slide largeimg"><div class="content"><h2>Our solution today</h2>
+<p><img alt="A data pipeline, with services publishing into an input service, Kafka and Zooper between the input service and an output service, and datamarts subscribing to the output service." src="imgs/pipeline_arch.png" /></p></div></section>
+<section class="slide left"><div class="content"><h2>Some details</h2>
+<ol>
+<li>Services maintain their own views.</li>
+<li>Services publish data their gather into pipeline.</li>
+<li>Services subscribe to pipeline to access real-time shared data.</li>
+<li>Shared data warehouse of pipeline contents.</li>
+<li>Archive pipeline contents to Amazon S3.</li>
+</ol></div></section>
+<section class="slide left"><div class="content"><h2><a href="http://json-schema.org/">JSON Schema</a></h2>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Schema&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="nt">&quot;firstName&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
+   <span class="nt">&quot;lastName&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
+   <span class="nt">&quot;age&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Age in years&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;firstName&quot;</span><span class="p">,</span> <span class="s2">&quot;lastName&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div></div></section>
+<section class="slide "><div class="content"><h2>Publish Subscribe</h2></div></section>
+<section class="slide "><div class="content"><h2>Learnings thus far</h2>
+<ul>
+<li>Switch to Java</li>
+<li>no normalizing</li>
+<li>no centralized crawler</li>
+</ul></div></section>
 <section class="slide "><div class="content"><h1>Questions?</h1></div></section>
 
 
