@@ -23,7 +23,7 @@
 
 !SLIDE left
 
-## A map of what's to come
+## A map of what's to come:
 
 1. A monolithic Python application
 2. Many kinds of growth
@@ -34,7 +34,7 @@
 
 !SLIDE largeimg
 
-## A familiar monolith
+## A familiar monolith.
 
 ![Architecture diagram of monolithic architecture composed of a load balancer, Gunicorn web servers, MySQL, Redis and celery workers.](imgs/monolithic.png)
 
@@ -52,7 +52,7 @@
 
 * Complex deployments.
 * Tight coupling.
-* Siloed Data.
+* Siloed data.
 
 
 !SLIDE left
@@ -76,7 +76,7 @@
 
 !SLIDE left
 
->> People use solutions which are easier, more powerful and require less upfront learning than doing it themselves.
+>> People choose the simplest available tool that appears to solve their current problem.
 
 
 !SLIDE left
@@ -90,36 +90,47 @@
 4. Fail loudly.
 5. Facilitate schemas change.
 
-!SLIDE largeimg
+!SLIDE left largeimg
 
-## Our solution today
+## Our solution today:
 
 ![A data pipeline, with services publishing into an input service, Kafka and Zooper between the input service and an output service, and datamarts subscribing to the output service.](imgs/pipeline_arch.png)
 
+
 !SLIDE left
 
-## Kafka
+## Details on the components:
+
+1. [Kafka](http://kafka.apache.org/)
+2. [Zookeeper](http://zookeeper.apache.org/)
+3. [JSON Schema](http://json-schema.org/)
+4. HTTP servers
+5. Datastore agnostic.
+
+
+!SLIDE left
+
+## Why Kafka?
 
 1. Most important decision we made.
-2. No manual coordination to support new consumer.
-3. No manual coordination to support new publisher.
-4. Able to guarantee delivery
+2. As easy as publish-subcribe,
+3. With strong deliverability guarantees.
+4. Data durability.
+5. Horizontal scalability.
 
 
 !SLIDE left
 
-## Some details
+## Why Zookeeper?
 
-1. Services maintain their own views.
-2. Services publish data their gather into pipeline.
-3. Services subscribe to pipeline to access real-time shared data.
-4. Shared data warehouse of pipeline contents.
-5. Archive pipeline contents to Amazon S3.
+1. It integrates well with Kafka out of the box.
+2. It's fast.
+3. It's simple to use.
 
 
 !SLIDE left
 
-## [JSON Schema](http://json-schema.org/)
+## Why [JSON Schema](http://json-schema.org/) and HTTP?
 
 ~~~~{json}
 {
@@ -138,10 +149,13 @@
 ~~~~
 
 
-!SLIDE
+!SLIDE left
 
-## Publish Subscribe
+## Why datastore agnostic?
 
+1. Don't know what we don't know.
+2. Variable access patterns and requirements.
+3. Simple, dependable infrastructure.
 
 
 !SLIDE
@@ -153,14 +167,6 @@
 * no centralized crawler
 
 
-
-
 !SLIDE
 
-
-
-
 # Questions?
-
-
-

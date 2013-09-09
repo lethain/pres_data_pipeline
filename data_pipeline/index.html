@@ -47,7 +47,7 @@
 causes your tools or approach to fail.</p>
 </blockquote>
 </blockquote></div></section>
-<section class="slide left"><div class="content"><h2>A map of what's to come</h2>
+<section class="slide left"><div class="content"><h2>A map of what's to come:</h2>
 <ol>
 <li>A monolithic Python application</li>
 <li>Many kinds of growth</li>
@@ -55,7 +55,7 @@ causes your tools or approach to fail.</p>
 <li>Building a data pipeline</li>
 <li>Questions</li>
 </ol></div></section>
-<section class="slide largeimg"><div class="content"><h2>A familiar monolith</h2>
+<section class="slide largeimg"><div class="content"><h2>A familiar monolith.</h2>
 <p><img alt="Architecture diagram of monolithic architecture composed of a load balancer, Gunicorn web servers, MySQL, Redis and celery workers." src="imgs/monolithic.png" /></p></div></section>
 <section class="slide largeimg"><div class="content"><h2>When an increase...</h2>
 <p><img alt="Showing teams, products and databases increasing over time." src="imgs/when_an_increase.png" /></p></div></section>
@@ -63,7 +63,7 @@ causes your tools or approach to fail.</p>
 <ul>
 <li>Complex deployments.</li>
 <li>Tight coupling.</li>
-<li>Siloed Data.</li>
+<li>Siloed data.</li>
 </ul></div></section>
 <section class="slide left"><div class="content"><h2>Data will break you in various ways.</h2>
 <ul>
@@ -80,7 +80,7 @@ causes your tools or approach to fail.</p>
 </ol></div></section>
 <section class="slide left"><div class="content"><blockquote>
 <blockquote>
-<p>People use solutions which are easier, more powerful and require less upfront learning than doing it themselves.</p>
+<p>People choose the simplest available tool that appears to solve their current problem.</p>
 </blockquote>
 </blockquote></div></section>
 <section class="slide left"><div class="content"><h2>One pipeline to facilitate them all.</h2>
@@ -92,17 +92,31 @@ causes your tools or approach to fail.</p>
 <li>Fail loudly.</li>
 <li>Facilitate schemas change.</li>
 </ol></div></section>
-<section class="slide largeimg"><div class="content"><h2>Our solution today</h2>
+<section class="slide left largeimg"><div class="content"><h2>Our solution today:</h2>
 <p><img alt="A data pipeline, with services publishing into an input service, Kafka and Zooper between the input service and an output service, and datamarts subscribing to the output service." src="imgs/pipeline_arch.png" /></p></div></section>
-<section class="slide left"><div class="content"><h2>Some details</h2>
+<section class="slide left"><div class="content"><h2>Details on the components:</h2>
 <ol>
-<li>Services maintain their own views.</li>
-<li>Services publish data their gather into pipeline.</li>
-<li>Services subscribe to pipeline to access real-time shared data.</li>
-<li>Shared data warehouse of pipeline contents.</li>
-<li>Archive pipeline contents to Amazon S3.</li>
+<li><a href="http://kafka.apache.org/">Kafka</a></li>
+<li><a href="http://zookeeper.apache.org/">Zookeeper</a></li>
+<li><a href="http://json-schema.org/">JSON Schema</a></li>
+<li>HTTP servers</li>
+<li>Datastore agnostic.</li>
 </ol></div></section>
-<section class="slide left"><div class="content"><h2><a href="http://json-schema.org/">JSON Schema</a></h2>
+<section class="slide left"><div class="content"><h2>Why Kafka?</h2>
+<ol>
+<li>Most important decision we made.</li>
+<li>As easy as publish-subcribe,</li>
+<li>With strong deliverability guarantees.</li>
+<li>Data durability.</li>
+<li>Horizontal scalability.</li>
+</ol></div></section>
+<section class="slide left"><div class="content"><h2>Why Zookeeper?</h2>
+<ol>
+<li>It integrates well with Kafka out of the box.</li>
+<li>It's fast.</li>
+<li>It's simple to use.</li>
+</ol></div></section>
+<section class="slide left"><div class="content"><h2>Why <a href="http://json-schema.org/">JSON Schema</a> and HTTP?</h2>
 <div class="codehilite"><pre><span class="p">{</span>
    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Schema&quot;</span><span class="p">,</span>
    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
@@ -117,7 +131,12 @@ causes your tools or approach to fail.</p>
     <span class="nt">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;firstName&quot;</span><span class="p">,</span> <span class="s2">&quot;lastName&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div></div></section>
-<section class="slide "><div class="content"><h2>Publish Subscribe</h2></div></section>
+<section class="slide left"><div class="content"><h2>Why datastore agnostic?</h2>
+<ol>
+<li>Don't know what we don't know.</li>
+<li>Variable access patterns and requirements.</li>
+<li>Simple, dependable infrastructure.</li>
+</ol></div></section>
 <section class="slide "><div class="content"><h2>Learnings thus far</h2>
 <ul>
 <li>Switch to Java</li>
