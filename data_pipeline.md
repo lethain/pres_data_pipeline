@@ -14,6 +14,21 @@
 ## Will Larson ([@lethain](https://twitter.com/Lethain))
 ## SocialCode ([@socialcodeinc](https://twitter.com/socialcodeinc))
 
+!SLIDE largeimg
+
+## When an increase...
+
+![Showing teams, products and databases increasing over time.](imgs/when_an_increase.png)
+
+!SLIDE left
+
+## ...causes your tools or approach to break.
+
+* Complex deployments.
+* Tight coupling.
+* Siloed data.
+
+
 
 !SLIDE
 
@@ -37,22 +52,6 @@
 ## A familiar monolith.
 
 ![Architecture diagram of monolithic architecture composed of a load balancer, Gunicorn web servers, MySQL, Redis and celery workers.](imgs/monolithic.png)
-
-
-!SLIDE largeimg
-
-## When an increase...
-
-![Showing teams, products and databases increasing over time.](imgs/when_an_increase.png)
-
-
-!SLIDE left
-
-## ...causes your tools or approach to break.
-
-* Complex deployments.
-* Tight coupling.
-* Siloed data.
 
 
 !SLIDE left
