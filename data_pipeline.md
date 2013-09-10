@@ -1,12 +1,3 @@
-!SLIDE left
-
-## Issues to address
-
-1. right now it's a bit incoherent, trying to tell two different stories and having trouble weaving them together
-2. should consider removing the non-data scaling storyline entirely, or radically simplifying it
-3. Maybe we should call it, from SoA Data Silos to a Unified Data Pipeline
-
-
 !SLIDE
 
 # Building Data Infrastructure
@@ -25,43 +16,25 @@
 ## ...causes your tools or approach to break.
 
 * Complex deployments.
-* Tight coupling.
-* Siloed data.
-
+* Tight coupling of components.
+* Changes too complex to review.
+* Team bottlenecks.
 
 
 !SLIDE
 
+## What about "big data" problems?
+
 >> When an increase of data, in quantity or kind,
 >> causes your tools or approach to fail.
 
-
 !SLIDE left
 
-## A map of what's to come:
+## Monolithic data problems.
 
-1. A monolithic Python application
-2. Many kinds of growth
-3. Data becomes the bottleneck
-4. Building a data pipeline
-5. Questions
-
-
-!SLIDE largeimg
-
-## A familiar monolith.
-
-![Architecture diagram of monolithic architecture composed of a load balancer, Gunicorn web servers, MySQL, Redis and celery workers.](imgs/monolithic.png)
-
-
-!SLIDE left
-
-## Data will break you in various ways.
-
-* Schema changes.
-* Silos.
+* Expensive schema changes.
+* Data siloed by performance.
 * Incompatible requirements.
-* Growth.
 
 
 !SLIDE left
@@ -73,32 +46,34 @@
 3. Pipeline for sharing data?
 
 
-!SLIDE left
+!SLIDE largeimg
 
->> People choose the simplest available tool that appears to solve their current problem.
+## A familiar monolith.
+
+![Architecture diagram of monolithic architecture composed of a load balancer, Gunicorn web servers, MySQL, Redis and celery workers.](imgs/monolithic.png)
 
 
 !SLIDE left
 
 ## One pipeline to facilitate them all.
 
-1. Avoid datastore lockin.
+1. Avoid datastore lock-in.
 1. Decouple publishing and consumption.
 2. Support cheap data exploration.
 3. Fail rarely.
 4. Fail loudly.
 5. Facilitate schemas change.
 
-!SLIDE left largeimg
+!SLIDE largeimg
 
-## Our solution today:
+## Our solution today.
 
 ![A data pipeline, with services publishing into an input service, Kafka and Zooper between the input service and an output service, and datamarts subscribing to the output service.](imgs/pipeline_arch.png)
 
 
 !SLIDE left
 
-## Details on the components:
+## Details on the components.
 
 1. [Kafka](http://kafka.apache.org/)
 2. [Zookeeper](http://zookeeper.apache.org/)
@@ -157,13 +132,13 @@
 3. Simple, dependable infrastructure.
 
 
-!SLIDE
+!SLIDE left
 
 ## Learnings thus far
 
-* Switch to Java
-* no normalizing
-* no centralized crawler
+* Kafka bindings in Python are young.
+* Don't plan ahead too far.
+* Performance takes time, and perhaps Java.
 
 
 !SLIDE

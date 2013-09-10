@@ -32,12 +32,6 @@
 <body class="deck-container">
 
 <!-- Begin slides -->
-<section class="slide left"><div class="content"><h2>Issues to address</h2>
-<ol>
-<li>right now it's a bit incoherent, trying to tell two different stories and having trouble weaving them together</li>
-<li>should consider removing the non-data scaling storyline entirely, or radically simplifying it</li>
-<li>Maybe we should call it, from SoA Data Silos to a Unified Data Pipeline</li>
-</ol></div></section>
 <section class="slide "><div class="content"><h1>Building Data Infrastructure</h1>
 <h2>Will Larson (<a href="https://twitter.com/Lethain">@lethain</a>)</h2>
 <h2>SocialCode (<a href="https://twitter.com/socialcodeinc">@socialcodeinc</a>)</h2></div></section>
@@ -46,31 +40,22 @@
 <section class="slide left"><div class="content"><h2>...causes your tools or approach to break.</h2>
 <ul>
 <li>Complex deployments.</li>
-<li>Tight coupling.</li>
-<li>Siloed data.</li>
+<li>Tight coupling of components.</li>
+<li>Changes too complex to review.</li>
+<li>Team bottlenecks.</li>
 </ul></div></section>
-<section class="slide "><div class="content"><blockquote>
+<section class="slide "><div class="content"><h2>What about "big data" problems?</h2>
+<blockquote>
 <blockquote>
 <p>When an increase of data, in quantity or kind,
 causes your tools or approach to fail.</p>
 </blockquote>
 </blockquote></div></section>
-<section class="slide left"><div class="content"><h2>A map of what's to come:</h2>
-<ol>
-<li>A monolithic Python application</li>
-<li>Many kinds of growth</li>
-<li>Data becomes the bottleneck</li>
-<li>Building a data pipeline</li>
-<li>Questions</li>
-</ol></div></section>
-<section class="slide largeimg"><div class="content"><h2>A familiar monolith.</h2>
-<p><img alt="Architecture diagram of monolithic architecture composed of a load balancer, Gunicorn web servers, MySQL, Redis and celery workers." src="imgs/monolithic.png" /></p></div></section>
-<section class="slide left"><div class="content"><h2>Data will break you in various ways.</h2>
+<section class="slide left"><div class="content"><h2>Monolithic data problems.</h2>
 <ul>
-<li>Schema changes.</li>
-<li>Silos.</li>
+<li>Expensive schema changes.</li>
+<li>Data siloed by performance.</li>
 <li>Incompatible requirements.</li>
-<li>Growth.</li>
 </ul></div></section>
 <section class="slide left"><div class="content"><h2>How to tame your data?</h2>
 <ol>
@@ -78,23 +63,20 @@ causes your tools or approach to fail.</p>
 <li>Unify collection and storage?</li>
 <li>Pipeline for sharing data?</li>
 </ol></div></section>
-<section class="slide left"><div class="content"><blockquote>
-<blockquote>
-<p>People choose the simplest available tool that appears to solve their current problem.</p>
-</blockquote>
-</blockquote></div></section>
+<section class="slide largeimg"><div class="content"><h2>A familiar monolith.</h2>
+<p><img alt="Architecture diagram of monolithic architecture composed of a load balancer, Gunicorn web servers, MySQL, Redis and celery workers." src="imgs/monolithic.png" /></p></div></section>
 <section class="slide left"><div class="content"><h2>One pipeline to facilitate them all.</h2>
 <ol>
-<li>Avoid datastore lockin.</li>
+<li>Avoid datastore lock-in.</li>
 <li>Decouple publishing and consumption.</li>
 <li>Support cheap data exploration.</li>
 <li>Fail rarely.</li>
 <li>Fail loudly.</li>
 <li>Facilitate schemas change.</li>
 </ol></div></section>
-<section class="slide left largeimg"><div class="content"><h2>Our solution today:</h2>
+<section class="slide largeimg"><div class="content"><h2>Our solution today.</h2>
 <p><img alt="A data pipeline, with services publishing into an input service, Kafka and Zooper between the input service and an output service, and datamarts subscribing to the output service." src="imgs/pipeline_arch.png" /></p></div></section>
-<section class="slide left"><div class="content"><h2>Details on the components:</h2>
+<section class="slide left"><div class="content"><h2>Details on the components.</h2>
 <ol>
 <li><a href="http://kafka.apache.org/">Kafka</a></li>
 <li><a href="http://zookeeper.apache.org/">Zookeeper</a></li>
@@ -137,11 +119,12 @@ causes your tools or approach to fail.</p>
 <li>Variable access patterns and requirements.</li>
 <li>Simple, dependable infrastructure.</li>
 </ol></div></section>
-<section class="slide "><div class="content"><h2>Learnings thus far</h2>
+<section class="slide left"><div class="content"><h2>Learnings thus far</h2>
 <ul>
-<li>Switch to Java</li>
-<li>no normalizing</li>
-<li>no centralized crawler</li>
+<li>Kafka bindings in Python are young.</li>
+<li>Don't plan ahead too far.</li>
+<li>Performance takes time, and perhaps Java.</li>
+<li>Reliability takes time.</li>
 </ul></div></section>
 <section class="slide "><div class="content"><h1>Questions?</h1></div></section>
 
