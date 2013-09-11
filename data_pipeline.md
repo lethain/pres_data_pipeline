@@ -41,16 +41,9 @@
 
 !SLIDE largeimg
 
-## Our solution today.
+## Our solution.
 
 ![A data pipeline, with services publishing into an input service, Kafka and Zooper between the input service and an output service, and datamarts subscribing to the output service.](imgs/pipeline_arch.png)
-
-
-!SLIDE left
-
-## What is Kafka?
-
-1. ....
 
 
 !SLIDE left
@@ -88,15 +81,15 @@
 
 ## Have our lives improved?
 
-1. A time and database for all things.
-2. Allowed us to bring up a datawarehouse with minimal coordination.
-3. Easy experimentation with data streams.
-4. (What else??)
+1. More, specialized, databases.
+2. Reduced coordination cost across teams.
+3. More experimentation and exploration.
+4. Paradigm flexibility (Map-Reduce, Warehousing, ...)
 
 
 !SLIDE left
 
-## Learnings thus far
+## What we've learned so far.
 
 * Kafka bindings in Python are young.
 * Don't plan ahead too far.
