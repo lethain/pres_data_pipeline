@@ -7,43 +7,9 @@
 
 !SLIDE largeimg
 
-## When an increase...
+## Growth problems.
 
 ![Showing teams, products and databases increasing over time.](imgs/when_an_increase.png)
-
-!SLIDE left
-
-## ...causes your tools or approach to break.
-
-* Complex deployments.
-* Tight coupling of components.
-* Changes too complex to review.
-* Team bottlenecks.
-
-
-!SLIDE
-
-## What about "big data" problems?
-
->> When an increase of data, in quantity or kind,
->> causes your tools or approach to fail.
-
-!SLIDE left
-
-## Monolithic data problems.
-
-* Expensive schema changes.
-* Data siloed by performance.
-* Incompatible requirements.
-
-
-!SLIDE left
-
-## How to tame your data?
-
-1. Embrace the silos?
-2. Unify collection and storage?
-3. Pipeline for sharing data?
 
 
 !SLIDE largeimg
@@ -55,14 +21,23 @@
 
 !SLIDE left
 
-## One pipeline to facilitate them all.
+## Monolithic data problems.
 
-1. Avoid datastore lock-in.
+* Expensive schema changes.
+* Data siloed by performance.
+* Explosion of access patterns.
+
+
+!SLIDE left
+
+## Our requirements.
+
 1. Decouple publishing and consumption.
 2. Support cheap data exploration.
-3. Fail rarely.
-4. Fail loudly.
-5. Facilitate schemas change.
+4. Facilitate schemas change.
+3. Fail rarely, fail loudly.
+4. Avoid datastore lock-in.
+
 
 !SLIDE largeimg
 
@@ -73,38 +48,24 @@
 
 !SLIDE left
 
-## Details on the components.
+## What is Kafka?
 
-1. [Kafka](http://kafka.apache.org/)
-2. [Zookeeper](http://zookeeper.apache.org/)
-3. [JSON Schema](http://json-schema.org/)
-4. HTTP servers
-5. Datastore agnostic.
+1. ....
 
 
 !SLIDE left
 
 ## Why Kafka?
 
-1. Most important decision we made.
-2. As easy as publish-subcribe,
-3. With strong deliverability guarantees.
-4. Data durability.
-5. Horizontal scalability.
+1. Does pub-sub right.
+2. Data durability.
+3. Horizontal scalability.
+4. [Zookeeper](http://zookeeper.apache.org/).
 
 
 !SLIDE left
 
-## Why Zookeeper?
-
-1. It integrates well with Kafka out of the box.
-2. It's fast.
-3. It's simple to use.
-
-
-!SLIDE left
-
-## Why [JSON Schema](http://json-schema.org/) and HTTP?
+## Why [JSON Schema](http://json-schema.org/)? Why HTTP?
 
 ~~~~{json}
 {
@@ -125,11 +86,12 @@
 
 !SLIDE left
 
-## Why datastore agnostic?
+## Have our lives improved?
 
-1. Don't know what we don't know.
-2. Variable access patterns and requirements.
-3. Simple, dependable infrastructure.
+1. A time and database for all things.
+2. Allowed us to bring up a datawarehouse with minimal coordination.
+3. Easy experimentation with data streams.
+4. (What else??)
 
 
 !SLIDE left
@@ -144,3 +106,26 @@
 !SLIDE
 
 # Questions?
+
+
+!SLIDE
+
+## Rejected slides
+
+
+!SLIDE
+
+## What about "big data" problems?
+
+>> When an increase of data, in quantity or kind,
+>> causes your tools or approach to fail.
+
+
+!SLIDE left
+
+## Details on the components.
+
+1. Simple HTTP interface.
+2. [JSON Schema](http://json-schema.org/)
+3. [Kafka](http://kafka.apache.org/)
+
